@@ -6,4 +6,4 @@ app.get('/',(req,res)=>{
     res.send("App is running")
 });
 
-app.listen(3000);
+app.listen(5000);
