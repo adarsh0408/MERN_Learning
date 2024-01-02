@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom'
+import SignUp from "./SignUp";
 
 const Nav=()=>{
     return(
@@ -10,6 +11,7 @@ const Nav=()=>{
                 <li> <Link to='/update'>Update Product</Link></li>
                 <li> <Link to='/logout'>Logout</Link></li>
                 <li> <Link to='/profile'>Profile</Link></li>
+                <li> <Link to='/register'>Register</Link></li>
             </ul>
         </div>
     )

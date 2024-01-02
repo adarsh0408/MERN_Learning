@@ -53,3 +53,12 @@
   text-align: center;
   width: 100%;
 }
+
+.signUpInput{
+  display: block;
+  margin: 10px auto;
+  width: 50%;
+  border: 2px solid grey;
+  border-radius: 6px;
+  padding: 12px;
+}
