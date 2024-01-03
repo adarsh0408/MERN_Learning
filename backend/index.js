@@ -33,6 +33,20 @@ app.post('/add-product',async (req,res)=>{
     res.send(result);
 })
 
+app.get('/get-product',async (req,res)=>{
+    let produts =await Product.find();
+    if(produts){
+        res.send(produts);
+    }else{
+        res.send("Product not found")
+    }
+})
+
+app.delete('/delete-product/:id',async (req,res)=>{
+    const result = await Product.deleteOne({_id:req.params.id});
+    res.send(result);
+})
+
 app.listen(5000,()=>{
     console.log("server is running on 5000");
 });
