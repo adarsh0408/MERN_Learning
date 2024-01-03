@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-
+import { Link } from "react-router-dom";
 const AllProducts=()=>{
     const [products,setProducts]=useState([]);
 
@@ -34,7 +34,7 @@ const AllProducts=()=>{
     return(
         <>
         <h1>Product List</h1>
-        <table>
+        <table style={{width:"100%"}}>
             <thead>
             <tr>
                 <th>Name</th>
@@ -42,6 +42,7 @@ const AllProducts=()=>{
                 <th>Category</th>
                 <th>Company</th>
                 <th>Delete</th>
+                <th>Update</th>
             </tr>
             </thead>
             <tbody>
@@ -50,10 +51,11 @@ const AllProducts=()=>{
           
                 <tr key={item._id}>
                 <td>{item.name}</td>
-                <td>{item.price}</td>
+                <td>&#x20B9; {item.price}</td>
                 <td>{item.category}</td>
                 <td>{item.company}</td>
                 <td onClick={()=>deleteProduct(item._id)} style={{cursor:"pointer"}}>delete</td>
+                <td ><Link to={`/update/${item._id}`}>Update</Link></td>
             </tr>
          
             )

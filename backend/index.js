@@ -42,6 +42,32 @@ app.get('/get-product',async (req,res)=>{
     }
 })
 
+app.get('/getProductById/:id', async (req, res) => {
+    try {
+      const product = await Product.findOne({ _id: req.params.id });
+  
+      if (product) {
+        res.status(200).json(product);
+      } else {
+        res.status(404).json({ error: "No record found" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
+  app.put('/update-product/:id',async(req,res)=>{
+    let updateProduct = await Product.updateOne(
+        {_id:req.params.id},
+        {
+            $set:req.body
+        }
+        );
+    res.send(updateProduct);
+  });
+
+
 app.delete('/delete-product/:id',async (req,res)=>{
     const result = await Product.deleteOne({_id:req.params.id});
     res.send(result);

@@ -16,7 +16,7 @@ const Nav=()=>{
                     auth?<>
                      <li> <Link to='/'>Products</Link></li>
                 <li> <Link to='/add'>Add Product</Link></li>
-                <li> <Link to='/update'>Update Product</Link></li>
+                {/* <li> <Link to='/update'>Update Product</Link></li> */}
                 <li> <Link to='/profile'>Profile</Link></li>
                 <li><Link to='/register' onClick={logout}>Logout {JSON.parse(auth).name}</Link></li>
                     </>:<><li> <Link to='/logIn'>Login</Link> </li>
