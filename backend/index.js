@@ -13,6 +13,18 @@ app.post('/register',async (req,res)=>{
     res.send(result);
 })
 
+app.post('/login',async (req,res)=>{
+    if (req.body.email && req.body.pass){ let userData = await user.findOne(req.body).select('-pass');
+    if(userData){
+        res.send(userData);
+    }else{
+        res.send("user not found")
+    }}else{
+        res.send('Email or pass. is incorrect')
+    }
+   
+})
+
 app.listen(5000,()=>{
     console.log("server is running on 5000");
 });
