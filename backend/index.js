@@ -67,6 +67,18 @@ app.get('/getProductById/:id', async (req, res) => {
     res.send(updateProduct);
   });
 
+  app.get('/search/:key',async(req,res)=>{
+    let result = await Product.find({
+        "$or":[
+            {name:{$regex:req.params.key}},
+            {company:{$regex:req.params.key}},
+            // {price:{$regex:req.body.params}},
+            {category:{$regex:req.params.key}}
+        ]
+    });
+    // result=await result.json()
+    res.send(result)
+  })
 
 app.delete('/delete-product/:id',async (req,res)=>{
     const result = await Product.deleteOne({_id:req.params.id});

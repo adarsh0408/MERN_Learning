@@ -2,6 +2,7 @@ import React,{useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 const AllProducts=()=>{
     const [products,setProducts]=useState([]);
+    const [key,setKey]=useState('');
 
     useEffect(()=>{
         getProducts();
@@ -26,14 +27,24 @@ const AllProducts=()=>{
             getProducts();
             alert("Deleted")
         }
-       
-      
-       
+    }
 
+    const searchProduct =async (event)=>{
+        let key = event.target.value;
+        console.log(key);
+        if(key){
+            let result =await fetch(`http://localhost:5000/search/${key}`);
+            result=await result.json();
+            setProducts(result)
+        }else{
+            getProducts()
+        }
+       
     }
     return(
         <>
         <h1>Product List</h1>
+        <input placeholder="Search Product" onChange={searchProduct} />
         <table style={{width:"100%"}}>
             <thead>
             <tr>
@@ -47,7 +58,7 @@ const AllProducts=()=>{
             </thead>
             <tbody>
            {
-            products.map((item,index)=>
+           products.length>0? products.map((item,index)=>
           
                 <tr key={item._id}>
                 <td>{item.name}</td>
@@ -58,7 +69,7 @@ const AllProducts=()=>{
                 <td ><Link to={`/update/${item._id}`}>Update</Link></td>
             </tr>
          
-            )
+            ):<h1>No result found</h1>
            }
               </tbody>
         </table>
